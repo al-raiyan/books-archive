@@ -10,18 +10,28 @@ const searchBooks = () => {
 const displaySearchResult = docs => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
+    if (docs.length === 0) {
+        const div = document.createElement('div');
+        div.classList.add('col');
+        div.innerHTML = `
+        <div class="card h-100">
+                <div class="card-body">
+                <p id="error-message" class=" text-danger text-center fs-1">No Result Found</p>
+        </div>
+        `;
+        searchResult.appendChild(div);
+    }
     docs.forEach(doc => {
         console.log(doc);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
         <div class="card h-100">
-            <img src="${doc.}" class="card-img-top" alt="...">
+            <img class="card-img-top" src="https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg" alt="">
                 <div class="card-body">
                     <h1 class="card-title">${doc.title}</h1>
                     <p class="author-name">${doc.author_name}</p>
                     <p class="publish-date">${doc.publish_date}</p>
-                    <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
         </div>
         `;
         searchResult.appendChild(div);
