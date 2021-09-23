@@ -22,7 +22,6 @@ const displaySearchResult = docs => {
         searchResult.appendChild(div);
     }
     docs.forEach(doc => {
-        console.log(doc);
         const div = document.createElement('div');
         div.classList.add('col');
         div.innerHTML = `
